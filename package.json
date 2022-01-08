@@ -1,0 +1,34 @@
+{
+    "name": "deca-vscode",
+    "displayName": "Deca",
+    "description": "Deca language syntax highlighting for Visual Studio Code",
+    "version": "0.1.0",
+	"preview": true,
+	"icon": "images/logo.png",
+    "engines": {
+        "vscode": "^1.39.0"
+    },
+	"author": {
+		"name": "Julien (using Yuekai Jia Decaf extension)"
+	},
+    "categories": [
+        "Programming Languages"
+    ],
+	"keywords": [
+		"deca",
+		"deca-lang"
+	],
+    "contributes": {
+        "languages": [{
+            "id": "deca",
+            "aliases": ["deca", "deca"],
+            "extensions": [".deca"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "deca",
+            "scopeName": "source.deca",
+            "path": "./syntaxes/deca.tmLanguage.json"
+        }]
+    }
+}

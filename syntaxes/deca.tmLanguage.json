@@ -1,0 +1,322 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Deca",
+	"patterns": [
+		{
+			"include": "#code"
+		}
+	],
+	"repository": {
+		"code": {
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#class"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#parens"
+				},
+				{
+					"include": "#functions"
+				},
+				{
+					"include": "#variables"
+				},
+				{
+					"match": ",",
+					"name": "punctuation.separator.delimiter.deca"
+				},
+				{
+					"match": "\\.",
+					"name": "punctuation.separator.period.deca"
+				},
+				{
+					"match": ";",
+					"name": "punctuation.terminator.deca"
+				},
+				{
+					"match": "\\S",
+					"name": "invalid.illegal.deca"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"match": "\\b(break|else|for|if|return|while)\\b",
+					"name": "keyword.control.deca"
+				},
+				{
+					"match": "\\b(instanceof)\\b",
+					"name": "keyword.other.instanceof.deca"
+				},
+				{
+					"match": "\\b(new)\\b",
+					"name": "keyword.operator.new.deca"
+				},
+				{
+					"match": "\\b(static)\\b",
+					"name": "storage.modifier.static.deca"
+				},
+				{
+					"match": "(\\+|\\-|\\*|\\/|%)",
+					"name": "keyword.operator.arithmetic.deca"
+				},
+				{
+					"match": "(&&|\\|\\||!)",
+					"name": "keyword.operator.logical.deca"
+				},
+				{
+					"match": "(<|<=|>|>=|==|!=)",
+					"name": "keyword.operator.comparison.deca"
+				},
+				{
+					"match": "(=)",
+					"name": "keyword.operator.assignment.deca"
+				},
+				{
+					"match": "\\b(Print|ReadInteger|ReadInteger)\\b",
+					"name": "support.function.builtin_fn.deca"
+				}
+			]
+		},
+		"class": {
+			"begin": "\\b(class)\\b\\s*([A-Za-z][_0-9A-Za-z]*)\\s*(\\b(extends)\\b\\s*([A-Za-z][_0-9A-Za-z]*))?\\s*{",
+			"end": "}",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.class.deca"
+				},
+				"2": {
+					"name": "entity.name.type.class.deca"
+				},
+				"4": {
+					"name": "storage.modifier.extends.deca"
+				},
+				"5": {
+					"name": "entity.name.type.class.deca"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.bracket.curly.deca"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#code"
+				}
+			]
+		},
+		"types": {
+			"patterns": [
+				{
+					"include": "#primitive-arrays"
+				},
+				{
+					"include": "#primitive-types"
+				},
+				{
+					"include": "#class-types"
+				}
+			]
+		},
+		"primitive-arrays": {
+			"patterns": [
+				{
+					"begin": "\\b(bool|int|string|void)\\b\\s*(?=\\[)",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.primitive.array.deca"
+						}
+					},
+					"end": "(?!\\s*\\[)",
+					"patterns": [
+						{
+							"include": "#parens"
+						}
+					]
+				}
+			]
+		},
+		"primitive-types": {
+			"match": "\\b(bool|int|string|void)\\b",
+			"name": "storage.type.primitive.deca"
+		},
+		"class-types": {
+			"patterns": [
+				{
+					"begin": "\\b(class)\\b\\s*([A-Za-z][_0-9A-Za-z]*)\\s*(?=\\[)",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.class.deca"
+						},
+						"2": {
+							"name": "entity.name.type.class.array.deca"
+						}
+					},
+					"end": "(?!\\s*\\[)",
+					"patterns": [
+						{
+							"include": "#parens"
+						}
+					]
+				},
+				{
+					"begin": "\\b(class)\\b\\s*([A-Za-z][_0-9A-Za-z]*)",
+					"end": "\\s*",
+					"beginCaptures": {
+						"1": {
+							"name": "storage.type.class.deca"
+						},
+						"2": {
+							"name": "entity.name.type.class.deca"
+						}
+					}
+				}
+			]
+		},
+		"parens": {
+			"patterns": [
+				{
+					"begin": "\\(",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.bracket.round.deca"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.bracket.round.deca"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#code"
+						}
+					]
+				},
+				{
+					"begin": "\\[",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.bracket.square.deca"
+						}
+					},
+					"end": "\\]",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.bracket.square.deca"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#code"
+						}
+					]
+				},
+				{
+					"begin": "{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.bracket.curly.deca"
+						}
+					},
+					"end": "}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.bracket.curly.deca"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#code"
+						}
+					]
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"match": "\\b(true|false|null)\\b",
+					"name": "constant.language.deca"
+				},
+				{
+					"match": "\\bthis\\b",
+					"name": "variable.language.this.deca"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"match": "0[Xx][0-9A-Fa-f]+",
+					"name": "constant.numeric.hex.deca"
+				},
+				{
+					"match": "[0-9]+",
+					"name": "constant.numeric.decimal.deca"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.deca",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.deca",
+					"match": "\\\\[nrt\"\\\\]"
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.line.deca",
+			"begin": "//",
+			"end": "(\\r|\\n|\\r\\n)",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.deca"
+				}
+			}
+		},
+		"functions": {
+			"begin": "([A-Za-z][_0-9A-Za-z]*)\\s*\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.function.deca"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#code"
+				}
+			]
+		},
+		"variables": {
+			"match": "([A-Za-z][_0-9A-Za-z]*)",
+			"name": "variable.other.deca"
+		}
+	},
+	"scopeName": "source.deca"
+}
